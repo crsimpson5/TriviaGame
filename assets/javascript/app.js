@@ -9,6 +9,7 @@ var correctAs;
 var incorrectAs;
 var unansweredAs;
 
+var numQuestions;
 var sq; // selected question
 var correctA;
 
@@ -114,7 +115,10 @@ function intializeQs() {
         "Michael Collins",
         "Alan Shepard"
       ]
-    }];
+    }
+  ];
+
+  numQuestions = questions.length;
 }
 
 function startTimer() {
@@ -139,7 +143,7 @@ function startTimer() {
 
         // show correct answer
         $("#answers").append("<h2>Out of time!</h2>");
-        $("#answers").append("<h2>Correct answer: " + correctA + "</h2>");
+        $("#answers").append("<h3>Correct answer: " + correctA + "</h3>");
 
         // go to next question after 7 seconds
         setTimeout(nextQuestion, 5000);
@@ -162,15 +166,17 @@ function gameOver() {
   $("#timer").empty();
   $("#question").empty();
   $("#answers").empty();
+  $("#question-count").empty();
+  $(".divider").remove();
 
-  $("#game-over").text("All done, here's how you did!");
-  $("#game-over").append("<h3>Correct answers: " + correctAs + "</h3>")
-  $("#game-over").append("<h3>Incorrect answers: " + incorrectAs + "</h3>")
-  $("#game-over").append("<h3>Unawnsered: " + unansweredAs + "</h3>")
+  $("#game-over").append("<h2>All done, here's how you did!</h2>");
+  $("#game-over").append("<div class='divider'></div>");
+  $("#game-over").append("<h3>Correct answers: " + correctAs + "</h3>");
+  $("#game-over").append("<h3>Incorrect answers: " + incorrectAs + "</h3>");
+  $("#game-over").append("<h3>Unawnsered: " + unansweredAs + "</h3>");
 
   $("#start-btn").text("Play again?");
   $("#start-btn").show();
-
 }
 
 function nextQuestion() {
@@ -204,6 +210,9 @@ function nextQuestion() {
     }
 
     questions.splice(sq, 1);
+
+    // display which question user is on
+    $("#question-count").text("Question " + (numQuestions - questions.length) + " of " + numQuestions);
   }
   else {
     gameOver();
@@ -218,6 +227,9 @@ function startGame() {
 
   $("#game-over").empty();
   $("#start-btn").hide();
+  $("#start-text").remove();
+  $(".divider").remove();
+  $("<div class='divider'></div>").insertAfter("#timer");
 
   intializeQs();
   nextQuestion();
@@ -239,7 +251,7 @@ function checkAnswer(selectedBtn) {
     incorrectAs++;
 
     $("#answers").append("<h2>Wrong!</h2>");
-    $("#answers").append("<h2>Correct answer: " + correctA + "</h2>");
+    $("#answers").append("<h3>Correct answer: " + correctA + "</h3>");
     setTimeout(nextQuestion, 5000);
   }
 }
@@ -247,37 +259,3 @@ function checkAnswer(selectedBtn) {
 $("#start-btn").on("click", startGame);
 
 $("body").on("click", ".answer-btn", function () { checkAnswer($(this)) });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-Display start button
-When button is clicked display first question and start the timer
-
-
-*/

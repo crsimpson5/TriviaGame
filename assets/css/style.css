@@ -1,0 +1,76 @@
+body {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+h2 {
+  font-size: 30px;
+  margin: 6px;
+}
+
+h3 {
+  font-size: 25px;
+  margin: 15px;
+}
+
+header {
+  width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  background-color: rgba(220, 220, 220, 0.9);
+}
+
+.divider {
+  height: 2px;
+  background-color: rgba(0, 0, 0, 0.2);
+  margin: 15px 0;
+}
+
+#start-btn {
+  padding: 6px 10px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 30px;
+  border: transparent solid 3px;
+  margin: 10px;
+  background: white;
+}
+
+.answer-btn {
+  border: transparent solid 3px;
+  padding: 6px 10px;
+  margin: 10px auto;
+  display: table;
+  background: white;
+}
+
+#start-btn:hover,
+.answer-btn:hover {
+  border: red solid 3px;
+  cursor: pointer
+}
+
+#main {
+  box-sizing: border-box;
+  width: 900px;
+  height: 500px;
+  margin: 0 auto;
+  text-align: center;
+  background-color: rgba(220, 220, 220, 0.9);
+  padding: 20px 10px;
+  position: relative;
+}
+
+#title {
+  font-size: 40px;
+  margin: 40px 0;
+  padding: 25px;
+}
+
+#question-count {
+  margin: 10px 0;
+  font-size: 20px;
+  position: absolute;
+  bottom: 30px;
+  width: 100%;
+  margin: -10px;
+}
+
