@@ -129,10 +129,12 @@ function startTimer() {
 
     intervalId = setInterval(function () {
 
+      // if there's time left update time display
       if (time > 0) {
         time--;
         $("#timer").text("Time remaining: " + time + " seconds");
       }
+      // else stop timer and show correct answer
       else {
 
         stopTimer();
@@ -141,16 +143,13 @@ function startTimer() {
         $("#question").empty();
         $("#answers").empty();
 
-        // show correct answer
         $("#answers").append("<h2>Out of time!</h2>");
         $("#answers").append("<h3>Correct answer: " + correctA + "</h3>");
 
-        // go to next question after 7 seconds
         setTimeout(nextQuestion, 5000);
-
       }
-
     }, 1000);
+
     timerRunning = true;
   }
 }
@@ -163,12 +162,14 @@ function stopTimer() {
 
 function gameOver() {
 
+  // empty fields
   $("#timer").empty();
   $("#question").empty();
   $("#answers").empty();
   $("#question-count").empty();
   $(".divider").remove();
 
+  // display results and show start button to play again
   $("#game-over").append("<h2>All done, here's how you did!</h2>");
   $("#game-over").append("<div class='divider'></div>");
   $("#game-over").append("<h3>Correct answers: " + correctAs + "</h3>");
@@ -183,14 +184,15 @@ function nextQuestion() {
 
   var sa; // selected answer
 
+  // check if there are any questions left to answer
   if (questions.length > 0) {
-    time = 30;
-    $("#answers").empty();
 
-    // display timer
+    time = 30;
+
+    $("#answers").empty();
     startTimer();
 
-    // select random quesiton
+    // select random index of remaining question
     sq = Math.floor(Math.random() * questions.length);
 
     // set the correct answer for this question
@@ -198,12 +200,13 @@ function nextQuestion() {
 
     $("#question").text(questions[sq].q);
 
+    // display each answer
     while (questions[sq].a.length > 0) {
 
       // select random answer to display
       sa = Math.floor(Math.random() * questions[sq].a.length);
 
-      newAns = $("<h2 class='answer-btn'>" + questions[sq].a[sa] + "</h2>");
+      newAns = $("<button class='answer-btn'>" + questions[sq].a[sa] + "</button>");
       questions[sq].a.splice(sa, 1);
 
       $("#answers").append(newAns);
@@ -241,12 +244,14 @@ function checkAnswer(selectedBtn) {
   $("#question").empty();
   $("#answers").empty();
 
+  // check if selected answer is correct
   if (selectedBtn.text() === correctA) {
     correctAs++;
 
     $("#answers").append("<h2>Correct!</h2>");
     setTimeout(nextQuestion, 3000);
   }
+  // else display correct answer
   else {
     incorrectAs++;
 

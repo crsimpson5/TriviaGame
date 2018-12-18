@@ -25,27 +25,23 @@ header {
   margin: 15px 0;
 }
 
-#start-btn {
+button {
   padding: 6px 10px;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-size: 30px;
   border: transparent solid 3px;
-  margin: 10px;
-  background: white;
-}
-
-.answer-btn {
-  border: transparent solid 3px;
-  padding: 6px 10px;
   margin: 10px auto;
-  display: table;
   background: white;
+  display: table;
 }
 
-#start-btn:hover,
-.answer-btn:hover {
+button:hover {
   border: red solid 3px;
   cursor: pointer
+}
+
+button:focus {
+  outline: 0;
 }
 
 #main {
