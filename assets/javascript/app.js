@@ -238,14 +238,16 @@ function startGame() {
   nextQuestion();
 }
 
-function checkAnswer(selectedBtn) {
+function checkAnswer() {
 
+  var answer = $(this).text();
+  
   stopTimer();
   $("#question").empty();
   $("#answers").empty();
 
   // check if selected answer is correct
-  if (selectedBtn.text() === correctA) {
+  if (answer === correctA) {
     correctAs++;
 
     $("#answers").append("<h2>Correct!</h2>");
@@ -263,4 +265,4 @@ function checkAnswer(selectedBtn) {
 
 $("#start-btn").on("click", startGame);
 
-$("body").on("click", ".answer-btn", function () { checkAnswer($(this)) });
+$(document).on("click", ".answer-btn", checkAnswer);
